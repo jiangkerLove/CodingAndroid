@@ -1,0 +1,132 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.protobuf'
+}
+
+android {
+    compileSdkVersion configVersion.compileSdkVersion
+    buildToolsVersion configVersion.buildToolsVersion
+
+    // 默认构建参数
+    defaultConfig {
+        applicationId configVersion.applicationId
+        minSdkVersion configVersion.minSdkVersion
+        targetSdkVersion configVersion.targetSdkVersion
+        versionCode configVersion.versionCode
+        versionName configVersion.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        /**
+         * 设置测试应用id
+         * testApplicationId "jfp.study.coding_android.test"
+         */
+    }
+
+    // 配置构建参数
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+//        debug {
+//            applicationIdSuffix ".debug"
+//        }
+//        staging {
+//            initWith debug
+//            applicationIdSuffix ".debugStaging"
+//        }
+    }
+
+    // 变种维度
+    flavorDimensions "version"
+    productFlavors {
+        demo {
+            dimension "version"
+//            修改此版本的appId
+//            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        full {
+            dimension "version"
+            versionNameSuffix "-full"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    sourceSets {
+        main {
+            //设置proto和生成的java文件路径
+            proto {
+                srcDir 'src/mian/proto'
+                include '**/*.proto'
+            }
+            java {
+                srcDir 'src/main/java'
+            }
+        }
+    }
+}
+
+protobuf {
+    //配置protoc编译器
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.17.3'
+    }
+    //这里配置生成目录，编译后会在build的目录下生成对应的java文件
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.builtins {
+                java {}
+            }
+        }
+    }
+}
+
+dependencies {
+    /**
+     * Dependency on a local library module，mylibrary必须在settings.gradle中定义
+     * implementation project(":mylibrary")
+     *
+     * Dependency on local binaries
+     * implementation fileTree(dir: 'libs', include: ['*.jar'])
+     *
+     * Dependency on a remote binary
+     * implementation 'com.example.android:app-magic:12.3'
+     */
+
+    baseDependencies.each { k, v -> implementation v }
+    baseTestDependencies.each { k, v -> testImplementation v }
+    baseAndroidTestDependencies.each { k, v -> androidTestImplementation v }
+
+    // protocol
+    implementation "com.google.protobuf:protobuf-java:$depsVersion.protobuf"
+
+    // retrofit Gson转化
+    implementation "com.squareup.retrofit2:retrofit:$depsVersion.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$depsVersion.converter_gson"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // gson解析
+//    implementation "com.google.code.gson:gson:$depsVersion.gson"
+
+    // 查看数据库的工具
+    debugImplementation "com.glance.guolindev:glance:$depsVersion.guolindev_glance"
+
+    implementation project(':common')
+}

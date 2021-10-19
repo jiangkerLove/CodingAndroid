@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jfp.study.coding_android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <activity android:name=".demo.ContactPersonActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".base.LifeService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".storage.sqlite.SQLiteActivity" />
+        <activity android:name=".network.NetworkActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".base.ALifeActivity"
+            android:launchMode="standard"
+            android:taskAffinity=".app" />
+        <activity
+            android:name=".base.CLifeActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".base.BLifeActivity"
+            android:launchMode="singleTask">
+
+        </activity>
+    </application>
+
+</manifest>

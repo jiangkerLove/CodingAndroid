@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion configVersion.compileSdkVersion
+    buildToolsVersion configVersion.buildToolsVersion
+
+    defaultConfig {
+        applicationId configVersion.applicationId
+        minSdkVersion configVersion.minSdkVersion
+        targetSdkVersion configVersion.targetSdkVersion
+        versionCode configVersion.versionCode
+        versionName configVersion.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        kapt{
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    baseDependencies.each { k, v -> implementation v }
+    baseTestDependencies.each { k, v -> testImplementation v }
+    baseAndroidTestDependencies.each { k, v -> androidTestImplementation v }
+    implementation project(':common')
+    implementation "com.alibaba:arouter-api:${depsVersion.arouter}"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt "com.alibaba:arouter-compiler:${depsVersion.arouter}"
+
+}

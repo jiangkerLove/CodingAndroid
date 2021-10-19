@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="jfp.study.coding_android.storage.sqlite.SQLiteActivity">
+
+        <Button
+                android:id="@+id/btnCreateTB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="创建Book数据库"/>
+
+        <Button
+                android:id="@+id/btnAddData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnCreateTB"
+                android:text="插入数据"/>
+
+        <Button
+                android:id="@+id/btnUpdateData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnAddData"
+                android:text="更新数据"/>
+
+        <Button
+                android:id="@+id/btnDeleteData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnUpdateData"
+                android:text="删除数据"/>
+
+        <Button
+                android:id="@+id/btnQueryData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnDeleteData"
+                android:text="查询数据"/>
+
+        <Button
+                android:id="@+id/btnSQL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnQueryData"
+                android:text="SQL操作"/>
+
+        <Button
+                android:id="@+id/btnTransaction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnSQL"
+                android:text="SQL事务"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

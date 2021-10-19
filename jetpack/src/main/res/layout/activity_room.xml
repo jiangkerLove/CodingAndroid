@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:id="@+id/btn_get_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Get User"/>
+
+        <Button
+                android:id="@+id/btn_add_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btn_get_user"
+                android:text="插入数据"/>
+
+        <Button
+                android:id="@+id/btnUpdateData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btn_add_data"
+                android:text="更新数据"/>
+
+        <Button
+                android:id="@+id/btnDeleteData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnUpdateData"
+                android:text="删除数据"/>
+
+        <Button
+                android:id="@+id/btnQueryData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btnDeleteData"
+                android:text="查询数据"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

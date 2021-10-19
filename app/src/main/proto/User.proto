@@ -1,0 +1,15 @@
+//指定版本为3，否则默认为2
+syntax = "proto3";
+
+package jfp.study.coding_android.proto;
+
+//option 为可选字段
+//生成文件路径
+option java_package = "jfp.study.coding_android.datastore.protobuf";
+//生成的文件名
+option java_outer_classname = "PersonProto";
+
+message Person{
+    // 格式：字段类型 + 字段名称 + 字段编号
+    string name = 1;
+}
